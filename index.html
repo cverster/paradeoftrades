@@ -27,8 +27,7 @@
     </div>
 
     <div id="buttons_area" class="w-full h-12 mt-2 flex justify-center items-center">
-        <button v-if="mode == 1" @click="rollDice()" class="rounded-lg border-t-4 border-green-400 p-2 bg-gray-300">Roll Dice!</button>
-        <button v-else @click="" disabled class="text-gray-500 line-through rounded-lg border-t-4 border-gray-400 p-2 bg-gray-300">Roll Dice!</button>
+        <button @click="rollDice()" class="rounded-lg border-t-4 border-green-400 p-2 bg-gray-300">Roll Dice!</button>
         <div v-if="mode == 1" class="px-4 mx-2 rounded-lg text-2xl border-2 border-gray-500">Rolled: {{ dice }}</div>
         <div v-if="mode == 1" class="px-2 mx-2">Dice min:</div>
         <select v-if="mode == 1" v-model="dice_min" class="border-2 rounded-lg border-gray-500">
