@@ -10,7 +10,7 @@
 
 <body>
 <div id="app" class="flex flex-wrap flex-row w-full h-full">
-    <div class="bg-green-500 flex w-full h-24 justify-center items-center mb-2">
+    <div class="bg-green-500 flex w-full h-20 justify-center items-center">
 
         <div id="heading" class="text-5xl text-gray-200">
             Parade of Trades Game
@@ -57,25 +57,25 @@
         </select>
     </div>
 
-    <div id="stockpile_area" class="w-full h-10 mt-2 flex justify-center items-center">
+    <div id="stockpile_area" class="w-full h-10 flex justify-center items-center">
         <p>Coins in stockpie: <span class="text-red-600 text-2xl">{{ stockpile }}</span></p>
     </div>
 
-    <div class="border-2 border-gray-800 rounded-lg mx-20 p-4 mt-4">
+    <div class="border-2 border-gray-800 rounded-lg mx-20 p-4">
     <div id="heading_area" class="w-full h-auto flex justify-center">
-        <div id="heading_1" class="w-1/6 h-12 mx-2 rounded-lg flex justify-center items-center">
+        <div id="heading_1" class="w-1/6 h-10 mx-2 rounded-lg flex justify-center items-center">
             <span class="text-2xl">Drill and Blast</span>
         </div>
-        <div id="heading_2" class="w-1/6 h-12 mx-2 rounded-lg flex justify-center items-center">
+        <div id="heading_2" class="w-1/6 h-10 mx-2 rounded-lg flex justify-center items-center">
             <span class="text-2xl">Load and Haul</span>
         </div>
-        <div id="heading_3" class="w-1/6 h-12 mx-2 rounded-lg flex justify-center items-center">
+        <div id="heading_3" class="w-1/6 h-10 mx-2 rounded-lg flex justify-center items-center">
             <span class="text-2xl">Blend and Crush</span>
         </div>
-        <div id="heading_4" class="w-1/6 h-12 mx-2 rounded-lg flex justify-center items-center">
+        <div id="heading_4" class="w-1/6 h-10 mx-2 rounded-lg flex justify-center items-center">
             <span class="text-2xl">Mill</span>
         </div>
-        <div id="heading_5" class="w-1/6 h-12 mx-2 rounded-lg flex justify-center items-center">
+        <div id="heading_5" class="w-1/6 h-10 mx-2 rounded-lg flex justify-center items-center">
             <span class="text-2xl">Plant</span>
         </div>
     </div>
@@ -104,19 +104,19 @@
     </div>
 
     <div id="game_area" class="w-full mt-1 h-auto flex justify-center">
-        <div id="station_1" class="w-1/6 h-40 m-2 bg-green-200 border-2 border-green-500 rounded-lg flex flex-wrap flex-col">
+        <div id="station_1" class="w-1/6 h-40 mx-2 bg-green-200 border-2 border-green-500 rounded-lg flex flex-wrap flex-col">
             <div v-for="coins in coins[0]" class="h-4 w-4 bg-yellow-500 rounded-full m-2"></div>
         </div>
-        <div id="station_2" class="w-1/6 h-40 m-2 bg-green-200 border-2 border-green-500 rounded-lg flex flex-wrap flex-col">
+        <div id="station_2" class="w-1/6 h-40 mx-2 bg-green-200 border-2 border-green-500 rounded-lg flex flex-wrap flex-col">
             <div v-for="coins in coins[1]" class="h-4 w-4 bg-yellow-500 rounded-full m-2"></div>
         </div>
-        <div id="station_3" class="w-1/6 h-40 m-2 bg-green-200 border-2 border-green-500 rounded-lg flex flex-wrap flex-col">
+        <div id="station_3" class="w-1/6 h-40 mx-2 bg-green-200 border-2 border-green-500 rounded-lg flex flex-wrap flex-col">
             <div v-for="coins in coins[2]" class="h-4 w-4 bg-yellow-500 rounded-full m-2"></div>
         </div>
-        <div id="station_4" class="w-1/6 h-40 m-2 bg-green-200 border-2 border-green-500 rounded-lg flex flex-wrap flex-col">
+        <div id="station_4" class="w-1/6 h-40 mx-2 bg-green-200 border-2 border-green-500 rounded-lg flex flex-wrap flex-col">
             <div v-for="coins in coins[3]" class="h-4 w-4 bg-yellow-500 rounded-full m-2"></div>
         </div>
-        <div id="station_5" class="w-1/6 h-40 m-2 bg-green-200 border-2 border-green-500 rounded-lg flex flex-wrap flex-col">
+        <div id="station_5" class="w-1/6 h-40 mx-2 bg-green-200 border-2 border-green-500 rounded-lg flex flex-wrap flex-col">
             <div v-for="coins in coins[4]" class="h-4 w-4 bg-yellow-500 rounded-full m-2"></div>
         </div>
     </div>
@@ -206,16 +206,16 @@
 
     </div>
 
-    <div id="passed_area" class="w-full h-10 mt-2 flex justify-center items-center mt-4">
+    <div id="passed_area" class="w-full h-10 flex justify-center items-center mt-4">
         <div v-if="currentItem == 5" class="rounded-full w-8 h-8 bg-red-500 text-red-500">a</div>
         <div v-else class="rounded-full w-8 h-8 border-2 border-red-500 text-white">a</div>
     </div>
 
-    <div id="passed_area" class="w-full h-10 mt-2 flex justify-center items-center">
+    <div id="passed_area" class="w-full h-10 flex justify-center items-center">
         <p>Coins passed: <span class="text-green-600 text-2xl">{{ passed }}</span></p>
     </div>
 
-    <div id="rounds_area" class="w-full h-10 mt-2 flex justify-center items-center">
+    <div id="rounds_area" class="w-full h-10 flex justify-center items-center">
         <p class="text-2xl font-bold">Weeks: {{ rounds }}</p>
         <p class="text-2xl font-bold ml-4">Rolls: {{ rolls }}</p>
     </div>
