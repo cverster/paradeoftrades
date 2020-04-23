@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CSS Template</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+<div id="app" class="flex flex-wrap flex-row w-full h-full">
+    <div class="bg-green-300 flex w-full h-full justify-center">
+
+        <div id="heading" class="text-5xl">
+            Parade of Trades Game
+        </div>
+
+    </div>
+
+    <div id="buttons_area" class="w-full h-12 mt-2 flex justify-center items-center">
+        <button @click="reset()" class="rounded-lg border-t-4 border-red-400 p-2 bg-red-300 text-red-700 mr-4">Reset</button>
+        <button @click="automate()" class="rounded-lg border-t-4 border-blue-400 text-blue-600 mr-4 p-2 bg-gray-300">Automate</button>
+        <button @click="changeMode()" class="rounded-lg border-t-4 border-blue-400 p-2 bg-gray-300">Change Mode</button>
+        <div class="px-4 mx-2 rounded-lg border-2 text-2xl border-blue-400" v-if="mode">Mode: Variance</div>
+        <div class="px-4 mx-2 rounded-lg border-2 text-2xl border-blue-400" v-else="mode">Mode: Stable</div>
+    </div>
+
+    <div id="buttons_area" class="w-full h-12 mt-2 flex justify-center items-center">
+        <button v-if="mode == 1" @click="rollDice()" class="rounded-lg border-t-4 border-green-400 p-2 bg-gray-300">Roll Dice!</button>
+        <button v-else @click="" disabled class="text-gray-500 line-through rounded-lg border-t-4 border-gray-400 p-2 bg-gray-300">Roll Dice!</button>
+        <div v-if="mode == 1" class="px-4 mx-2 rounded-lg text-2xl border-2 border-gray-500">Rolled: {{ dice }}</div>
+        <div v-if="mode == 1" class="px-2 mx-2">Dice min:</div>
+        <select v-if="mode == 1" v-model="dice_min" class="border-2 rounded-lg border-gray-500">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+        </select>
+        <div v-if="mode == 1" class="px-2 mx-2">Dice max:</div>
+        <select v-if="mode == 1" v-model="dice_max" class="border-2 rounded-lg border-gray-500">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+        </select>
+    </div>
+
+    <div id="stockpile_area" class="w-full h-10 mt-2 flex justify-center items-center">
+        <p>Coins in stockpie: <span class="text-red-600 text-2xl">{{ stockpile }}</span></p>
+    </div>
+
+    <div class="border-2 border-gray-800 rounded-lg mx-20 p-4 mt-4">
+    <div id="heading_area" class="w-full h-auto flex justify-center">
+        <div id="heading_1" class="w-1/6 h-12 mx-2 rounded-lg flex justify-center items-center">
+            <span class="text-2xl">Drill and Blast</span>
+        </div>
+        <div id="heading_2" class="w-1/6 h-12 mx-2 rounded-lg flex justify-center items-center">
+            <span class="text-2xl">Load and Haul</span>
+        </div>
+        <div id="heading_3" class="w-1/6 h-12 mx-2 rounded-lg flex justify-center items-center">
+            <span class="text-2xl">Blend and Crush</span>
+        </div>
+        <div id="heading_4" class="w-1/6 h-12 mx-2 rounded-lg flex justify-center items-center">
+            <span class="text-2xl">Mill</span>
+        </div>
+        <div id="heading_5" class="w-1/6 h-12 mx-2 rounded-lg flex justify-center items-center">
+            <span class="text-2xl">Plant</span>
+        </div>
+    </div>
+
+    <div id="info_area" class="w-full h-auto flex justify-center">
+        <div id="light_1" class="w-1/6 h-12 mx-2 rounded-lg flex justify-center items-center">
+            <div v-if="currentItem == 0" class="rounded-full w-8 h-8 bg-blue-500 text-blue-500">-</div>
+            <div v-else class="rounded-full w-8 h-8 border-2 border-blue-500 text-white">-</div>
+        </div>
+        <div id="light_2" class="w-1/6 h-12 mx-2 rounded-lg flex justify-center items-center">
+            <div v-if="currentItem == 1" class="rounded-full w-8 h-8 bg-blue-500 text-blue-500">-</div>
+            <div v-else class="rounded-full w-8 h-8 border-2 border-blue-500 text-white">-</div>
+        </div>
+        <div id="light_3" class="w-1/6 h-12 mx-2 rounded-lg flex justify-center items-center">
+            <div v-if="currentItem == 2" class="rounded-full w-8 h-8 bg-blue-500 text-blue-500">a</div>
+            <div v-else class="rounded-full w-8 h-8 border-2 border-blue-500 text-white">a</div>
+        </div>
+        <div id="light_4" class="w-1/6 h-12 mx-2 rounded-lg flex justify-center items-center">
+            <div v-if="currentItem == 3" class="rounded-full w-8 h-8 bg-blue-500 text-blue-500">a</div>
+            <div v-else class="rounded-full w-8 h-8 border-2 border-blue-500 text-white">a</div>
+        </div>
+        <div id="light_5" class="w-1/6 h-12 mx-2 rounded-lg flex justify-center items-center">
+            <div v-if="currentItem == 4" class="rounded-full w-8 h-8 bg-blue-500 text-blue-500">a</div>
+            <div v-else class="rounded-full w-8 h-8 border-2 border-blue-500 text-white">a</div>
+        </div>
+    </div>
+
+    <div id="game_area" class="w-full mt-1 h-auto flex justify-center">
+        <div id="station_1" class="w-1/6 h-40 m-2 bg-green-200 border-2 border-green-500 rounded-lg flex flex-wrap flex-col">
+            <div v-for="coins in coins[0]" class="h-4 w-4 bg-blue-500 rounded-full m-2"></div>
+        </div>
+        <div id="station_2" class="w-1/6 h-40 m-2 bg-green-200 border-2 border-green-500 rounded-lg flex flex-wrap flex-col">
+            <div v-for="coins in coins[1]" class="h-4 w-4 bg-blue-500 rounded-full m-2"></div>
+        </div>
+        <div id="station_3" class="w-1/6 h-40 m-2 bg-green-200 border-2 border-green-500 rounded-lg flex flex-wrap flex-col">
+            <div v-for="coins in coins[2]" class="h-4 w-4 bg-blue-500 rounded-full m-2"></div>
+        </div>
+        <div id="station_4" class="w-1/6 h-40 m-2 bg-green-200 border-2 border-green-500 rounded-lg flex flex-wrap flex-col">
+            <div v-for="coins in coins[3]" class="h-4 w-4 bg-blue-500 rounded-full m-2"></div>
+        </div>
+        <div id="station_5" class="w-1/6 h-40 m-2 bg-green-200 border-2 border-green-500 rounded-lg flex flex-wrap flex-col">
+            <div v-for="coins in coins[4]" class="h-4 w-4 bg-blue-500 rounded-full m-2"></div>
+        </div>
+    </div>
+
+    <div id="info_area" class="w-full h-auto flex justify-center">
+        <div id="station_1" class="w-1/6 h-12 mx-2 border-2 border-green-500 rounded-lg flex justify-center items-center">
+            <p v-if="coins[0] == coins_max[0]" class="text-2xl text-red-500">{{ coins[0] }} / {{ coins_max[0] }}</p>
+            <p v-else class="text-2xl">{{ coins[0] }} / {{ coins_max[0] }}</p>
+            <select v-model="coins_max[0]" class="ml-2 border-2 rounded-lg border-gray-500">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+            </select>
+        </div>
+        <div id="station_1" class="w-1/6 h-12 mx-2 border-2 border-green-500 rounded-lg flex justify-center items-center">
+            <p v-if="coins[1] == coins_max[1]" class="text-2xl text-red-500">{{ coins[1] }} / {{ coins_max[1] }}</p>
+            <p v-else class="text-2xl">{{ coins[1] }} / {{ coins_max[1] }}</p>
+            <select v-model="coins_max[1]" class="ml-2 border-2 rounded-lg border-gray-500">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+            </select>
+        </div>
+        <div id="station_1" class="w-1/6 h-12 mx-2 border-2 border-green-500 rounded-lg flex justify-center items-center">
+            <p v-if="coins[2] == coins_max[2]" class="text-2xl text-red-500">{{ coins[2] }} / {{ coins_max[2] }}</p>
+            <p v-else class="text-2xl">{{ coins[2] }} / {{ coins_max[2] }}</p>
+            <select v-model="coins_max[2]" class="ml-2 border-2 rounded-lg border-gray-500">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+            </select>
+        </div>
+        <div id="station_1" class="w-1/6 h-12 mx-2 border-2 border-green-500 rounded-lg flex justify-center items-center">
+            <p v-if="coins[3] == coins_max[3]" class="text-2xl text-red-500">{{ coins[3] }} / {{ coins_max[3] }}</p>
+            <p v-else class="text-2xl">{{ coins[3] }} / {{ coins_max[3] }}</p>
+            <select v-model="coins_max[3]" class="ml-2 border-2 rounded-lg border-gray-500">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+            </select>
+        </div>
+        <div id="station_1" class="w-1/6 h-12 mx-2 border-2 border-green-500 rounded-lg flex justify-center items-center">
+            <p v-if="coins[4] == coins_max[4]" class="text-2xl text-red-500">{{ coins[4] }} / {{ coins_max[4] }}</p>
+            <p v-else class="text-2xl">{{ coins[4] }} / {{ coins_max[4] }}</p>
+            <select v-model="coins_max[4]" class="ml-2 border-2 rounded-lg border-gray-500">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+            </select>
+        </div>
+    </div>
+
+    </div>
+
+    <div id="passed_area" class="w-full h-10 mt-2 flex justify-center items-center mt-4">
+        <div v-if="currentItem == 5" class="rounded-full w-8 h-8 bg-red-500 text-red-500">a</div>
+        <div v-else class="rounded-full w-8 h-8 border-2 border-red-500 text-white">a</div>
+    </div>
+
+    <div id="passed_area" class="w-full h-10 mt-2 flex justify-center items-center">
+        <p>Coins passed: <span class="text-green-600 text-2xl">{{ passed }}</span></p>
+    </div>
+
+    <div id="rounds_area" class="w-full h-10 mt-2 flex justify-center items-center">
+        <p class="text-2xl font-bold">Weeks: {{ rounds }}</p>
+        <p class="text-2xl font-bold ml-4">Rolls: {{ rolls }}</p>
+    </div>
+
+</div>
+</body>
+
+<style>
+#app {
+    display: flex;
+    flex-direction: column;
+}
+</style>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            coins: [0, 0, 0, 0, 0],
+            coins_max: [7, 5, 7, 3, 4],
+            stockpile: 60,
+            passed: 0,
+            currentItem: 5,
+            dice: 0,
+            mode: 1,
+            rounds: 1,
+            rolls: 0,
+            dice_min: 1,
+            dice_min_last: 1,
+            dice_max: 6,
+            dice_max_last: 6,
+            isHidden: false
+        },
+        methods: {
+            rollDice () {
+                this.rolls += 1;
+                if (this.mode == 1) {
+                    console.log('dice_max: ' + this.dice_max);
+                    console.log('dice_min: ' + this.dice_min);
+                    this.dice = Math.floor((Math.random() * (parseFloat(this.dice_max) - parseFloat(this.dice_min) + 1)) + parseFloat(this.dice_min));
+                    //this.dice = Math.floor(Math.random()*2)+7;
+                    console.log('dice: ' + this.dice);
+                    //this.dice = Math.round(Math.random() * (this.dice_max - this.dice_min + 1) + this.dice_min);
+                } else {
+                    this.dice = 3;
+                }
+                
+                if (this.currentItem == 0) {
+
+                    let coins_to_add = 0;
+                    if (this.stockpile < this.dice) {
+                        coins_to_add = this.stockpile;
+                    } else {
+                        coins_to_add = this.dice;
+                    }
+
+                    if ((this.coins[this.currentItem] + coins_to_add) > this.coins_max[this.currentItem]) {
+                        this.stockpile -= (this.coins_max[this.currentItem] - this.coins[this.currentItem]);
+                        this.coins[this.currentItem] = this.coins_max[this.currentItem];
+                        this.currentItem = 5;
+                        this.rounds += 1;
+                    } else {
+                        this.stockpile -= coins_to_add;
+                        this.coins[this.currentItem] += coins_to_add;
+                        this.currentItem = 5;
+                        this.rounds += 1;
+                    }
+
+                } else if (this.currentItem == 5) {
+
+                    if (this.coins[this.currentItem-1] < this.dice) {
+                        this.passed += this.coins[this.currentItem-1];
+                        this.coins[this.currentItem-1] = 0;
+                        this.currentItem -= 1;
+                    } else {
+                        this.passed += this.dice;
+                        this.coins[this.currentItem-1] -= this.dice;
+                        this.currentItem -= 1;
+                     }
+                } else {
+
+                    let coins_to_add = 0;
+                    if (this.coins[this.currentItem-1] < this.dice) {
+                        coins_to_add = this.coins[this.currentItem-1];
+                    } else {
+                        coins_to_add = this.dice;
+                    }
+
+                    if ((this.coins[this.currentItem] + coins_to_add) > this.coins_max[this.currentItem]) {
+                        this.coins[this.currentItem-1] -= (this.coins_max[this.currentItem] - this.coins[this.currentItem]);
+                        this.coins[this.currentItem] = this.coins_max[this.currentItem];
+                        this.currentItem -= 1;
+                    } else {
+                        this.coins[this.currentItem-1] -= coins_to_add;
+                        this.coins[this.currentItem] += coins_to_add;
+                        this.currentItem -= 1;
+                    }
+
+                    this.$forceUpdate();
+                }
+            },
+            changeMode () {
+                this.mode = !this.mode;
+            },
+            reset () {
+                    this.coins = [0, 0, 0, 0, 0];
+                    this.stockpile = 60;
+                    this.passed = 0;
+                    this.currentItem = 5;
+                    this.dice = 0;
+                    this.mode = 1;
+                    this.rounds = 1;
+            },
+            automate () {
+                let flag = true;
+                while (flag == true) {
+                    let that = this;
+                    setTimeout(() => this.isHidden = false, 500);
+                    this.rollDice();
+                    //window.setTimeout(that.rollDice(), 2000);
+
+                    if (this.passed >= 60) {
+                        flag = false;
+                    }
+                }
+            }
+        },
+        watch: {
+            dice_max: function (val) {
+                if (val < this.dice_min) {
+                    this.dice_max = this.dice_max_last;
+                } else {
+                    this.dice_max = val;
+                    this.dice_max_last = this.dice_max;
+                }
+            },
+            dice_min: function(val) {
+                if (val > this.dice_max) {
+                    this.dice_min = this.dice_min_last;
+                } else {
+                    this.dice_min = val;
+                    this.dice_min_last = this.dice_min;
+                }
+            }
+        }
+    })
+</script>
