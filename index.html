@@ -218,6 +218,7 @@
     <div id="rounds_area" class="w-full h-10 flex justify-center items-center">
         <p class="text-2xl font-bold">Weeks: {{ rounds }}</p>
         <p class="text-2xl font-bold ml-4">Rolls: {{ rolls }}</p>
+        <p class="text-2xl font-bold ml-4">Dice sum: {{ dice_sum }}</p>
     </div>
 
     <div id="buttons_area" class="w-full h-12 mt-2 flex justify-center items-center">
@@ -267,7 +268,8 @@
             dice_max: 6,
             dice_max_last: 6,
             isHidden: false,
-            modal: false
+            modal: false,
+            dice_sum: 0
         },
         methods: {
             rollDice () {
@@ -282,6 +284,8 @@
                 } else {
                     this.dice = 3;
                 }
+
+                this.dice_sum = this.dice_sum + this.dice;
                 
                 if (this.currentItem == 0) {
 
@@ -348,6 +352,8 @@
                     this.dice = 0;
                     this.mode = 1;
                     this.rounds = 1;
+                    this.rolls = 0;
+                    this.dice_sum = 0;
             },
             automate () {
                 let flag = true;
