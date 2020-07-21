@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173137274-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-173137274-1');
+    </script>
+
     <title>Parade of Trades</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,9 +20,9 @@
 
 <body>
 <div id="app" class="flex flex-wrap flex-row w-full h-full">
-    <div class="bg-green-500 flex w-full h-20 justify-center items-center">
+    <div class="bg-blue-500 flex w-full h-20 justify-center items-center">
 
-        <div id="heading" class="text-5xl text-gray-200">
+        <div id="heading" class="text-5xl text-gray-100">
             Parade of Trades Game
         </div>
 
@@ -64,19 +74,19 @@
     <div class="border-2 border-gray-800 rounded-lg mx-20 p-4">
     <div id="heading_area" class="w-full h-auto flex justify-center">
         <div id="heading_1" class="w-1/6 h-10 mx-2 rounded-lg flex justify-center items-center">
-            <span class="text-2xl">Drill and Blast</span>
+            <span class="text-2xl">Foundation</span>
         </div>
         <div id="heading_2" class="w-1/6 h-10 mx-2 rounded-lg flex justify-center items-center">
-            <span class="text-2xl">Load and Haul</span>
+            <span class="text-2xl">Walls</span>
         </div>
         <div id="heading_3" class="w-1/6 h-10 mx-2 rounded-lg flex justify-center items-center">
-            <span class="text-2xl">Blend and Crush</span>
+            <span class="text-2xl">Windows and Doors</span>
         </div>
         <div id="heading_4" class="w-1/6 h-10 mx-2 rounded-lg flex justify-center items-center">
-            <span class="text-2xl">Mill</span>
+            <span class="text-2xl">Roof</span>
         </div>
         <div id="heading_5" class="w-1/6 h-10 mx-2 rounded-lg flex justify-center items-center">
-            <span class="text-2xl">Plant</span>
+            <span class="text-2xl">Painting</span>
         </div>
     </div>
 
@@ -104,25 +114,25 @@
     </div>
 
     <div id="game_area" class="w-full mt-1 h-auto flex justify-center">
-        <div id="station_1" class="w-1/6 h-40 mx-2 bg-green-200 border-2 border-green-500 rounded-lg flex flex-wrap flex-col">
+        <div id="station_1" class="w-1/6 h-40 mx-2 bg-blue-200 border-2 border-blue-500 rounded-lg flex flex-wrap flex-col">
             <div v-for="coins in coins[0]" class="h-4 w-4 bg-yellow-500 rounded-full m-2"></div>
         </div>
-        <div id="station_2" class="w-1/6 h-40 mx-2 bg-green-200 border-2 border-green-500 rounded-lg flex flex-wrap flex-col">
+        <div id="station_2" class="w-1/6 h-40 mx-2 bg-blue-200 border-2 border-blue-500 rounded-lg flex flex-wrap flex-col">
             <div v-for="coins in coins[1]" class="h-4 w-4 bg-yellow-500 rounded-full m-2"></div>
         </div>
-        <div id="station_3" class="w-1/6 h-40 mx-2 bg-green-200 border-2 border-green-500 rounded-lg flex flex-wrap flex-col">
+        <div id="station_3" class="w-1/6 h-40 mx-2 bg-blue-200 border-2 border-blue-500 rounded-lg flex flex-wrap flex-col">
             <div v-for="coins in coins[2]" class="h-4 w-4 bg-yellow-500 rounded-full m-2"></div>
         </div>
-        <div id="station_4" class="w-1/6 h-40 mx-2 bg-green-200 border-2 border-green-500 rounded-lg flex flex-wrap flex-col">
+        <div id="station_4" class="w-1/6 h-40 mx-2 bg-blue-200 border-2 border-blue-500 rounded-lg flex flex-wrap flex-col">
             <div v-for="coins in coins[3]" class="h-4 w-4 bg-yellow-500 rounded-full m-2"></div>
         </div>
-        <div id="station_5" class="w-1/6 h-40 mx-2 bg-green-200 border-2 border-green-500 rounded-lg flex flex-wrap flex-col">
+        <div id="station_5" class="w-1/6 h-40 mx-2 bg-blue-200 border-2 border-blue-500 rounded-lg flex flex-wrap flex-col">
             <div v-for="coins in coins[4]" class="h-4 w-4 bg-yellow-500 rounded-full m-2"></div>
         </div>
     </div>
 
     <div id="info_area" class="w-full h-auto flex justify-center">
-        <div id="station_1" class="w-1/6 h-12 mx-2 border-2 border-green-500 rounded-lg flex justify-center items-center">
+        <div id="station_1" class="w-1/6 h-12 mx-2 border-2 border-blue-500 rounded-lg flex justify-center items-center">
             <p v-if="coins[0] == coins_max[0]" class="text-2xl text-red-500">{{ coins[0] }} / {{ coins_max[0] }}</p>
             <p v-else class="text-2xl">{{ coins[0] }} / {{ coins_max[0] }}</p>
             <select v-model="coins_max[0]" class="ml-2 border-2 rounded-lg border-gray-500">
@@ -138,7 +148,7 @@
                 <option>10</option>
             </select>
         </div>
-        <div id="station_1" class="w-1/6 h-12 mx-2 border-2 border-green-500 rounded-lg flex justify-center items-center">
+        <div id="station_1" class="w-1/6 h-12 mx-2 border-2 border-blue-500 rounded-lg flex justify-center items-center">
             <p v-if="coins[1] == coins_max[1]" class="text-2xl text-red-500">{{ coins[1] }} / {{ coins_max[1] }}</p>
             <p v-else class="text-2xl">{{ coins[1] }} / {{ coins_max[1] }}</p>
             <select v-model="coins_max[1]" class="ml-2 border-2 rounded-lg border-gray-500">
@@ -154,7 +164,7 @@
                 <option>10</option>
             </select>
         </div>
-        <div id="station_1" class="w-1/6 h-12 mx-2 border-2 border-green-500 rounded-lg flex justify-center items-center">
+        <div id="station_1" class="w-1/6 h-12 mx-2 border-2 border-blue-500 rounded-lg flex justify-center items-center">
             <p v-if="coins[2] == coins_max[2]" class="text-2xl text-red-500">{{ coins[2] }} / {{ coins_max[2] }}</p>
             <p v-else class="text-2xl">{{ coins[2] }} / {{ coins_max[2] }}</p>
             <select v-model="coins_max[2]" class="ml-2 border-2 rounded-lg border-gray-500">
@@ -170,7 +180,7 @@
                 <option>10</option>
             </select>
         </div>
-        <div id="station_1" class="w-1/6 h-12 mx-2 border-2 border-green-500 rounded-lg flex justify-center items-center">
+        <div id="station_1" class="w-1/6 h-12 mx-2 border-2 border-blue-500 rounded-lg flex justify-center items-center">
             <p v-if="coins[3] == coins_max[3]" class="text-2xl text-red-500">{{ coins[3] }} / {{ coins_max[3] }}</p>
             <p v-else class="text-2xl">{{ coins[3] }} / {{ coins_max[3] }}</p>
             <select v-model="coins_max[3]" class="ml-2 border-2 rounded-lg border-gray-500">
@@ -186,7 +196,7 @@
                 <option>10</option>
             </select>
         </div>
-        <div id="station_1" class="w-1/6 h-12 mx-2 border-2 border-green-500 rounded-lg flex justify-center items-center">
+        <div id="station_1" class="w-1/6 h-12 mx-2 border-2 border-blue-500 rounded-lg flex justify-center items-center">
             <p v-if="coins[4] == coins_max[4]" class="text-2xl text-red-500">{{ coins[4] }} / {{ coins_max[4] }}</p>
             <p v-else class="text-2xl">{{ coins[4] }} / {{ coins_max[4] }}</p>
             <select v-model="coins_max[4]" class="ml-2 border-2 rounded-lg border-gray-500">
@@ -222,18 +232,22 @@
     </div>
 
     <div id="buttons_area" class="w-full h-12 mt-2 flex justify-center items-center">
-        <button @click="toggleModal()" class="hover:bg-blue-200 rounded-lg border-t-4 border-blue-400 p-2 bg-gray-300 text-blue-400 mr-4">How it works</button>
+        <button @click="toggleModal()" class="hover:bg-blue-200 rounded-lg border-t-4 mb-4 border-blue-400 p-2 bg-gray-300 text-blue-400 mr-4">How it works</button>
 
     </div>
 
-    <div v-if="modal" @click.self="toggleModal" class="fixed z-50 overflow-auto w-full flex">
-        <div class="border-2 border-gray-700 ml-6 mt-6 fixed shadow-inner max-w-screen-lg md:relative pin-b pin-x align-top m-auto justify-end md:justify-center p-8 bg-white md:rounded w-full md:h-auto md:shadow flex flex-col">
+    <div v-if="modal" @click.self="toggleModal" class="fixed z-50 w-full flex">
+        <div class="border-2 border-gray-700 ml-6 mt-6 fixed shadow-inner max-w-screen-lg max-h-screen overflow-scroll md:relative pin-b pin-x align-top m-auto justify-end md:justify-center p-8 bg-white md:rounded w-full md:h-auto md:shadow flex flex-col">
             <h2 class ="text-2xl text-center font-bold md:leading-loose text-gray-600 md:mt-4 mb-4">How it works:</h2>
-            <p class="text-gray-700 leading-normal text-sm text-center mb-b">Parade of Trades is a simple simulation that helps us to understand the negative effects of variability in any system. In this simulation there is a "stockpile" of coins that need to move from their starting point above the process chain to their end point below the process chain. The simulation is over once all coins has been passed through the chain. The process chain consists of five steps, and each step takes turns in drawing coins from the step before it in the chain, or from the stockpile. To do this, each step takes turns to roll a dice, and can take the amount of coins from the step before it equal to the amount rolled, if there are enough coins available in that step. The simulation kicks off with the last step in the process chain (step 5 -> passed coin) indicated by the red light <span class="rounded-full w-4 h-2 bg-red-500 text-red-500">---</span> at the botom of the chain. Once the dice has been rolled, the dice is "passed" down the line to the next step in the chain (step 5) and that step's blue light <span class="rounded-full w-4 h-2 bg-blue-500 text-blue-500">---</span> is turned on. This step now rolls the dice, and takes that amount of coins from the step prior to it in the chain if they are available and so on. When the first step is reached, it draws from the stockpile. After each step in the chain has rolled, the "weeks" counter is incremented, indicated a "week" of work has passed. Additionally, each step has an inventory limit shows below the step. This is the maximum number of coins that the step can hold at any time, and is editable by the used.</p>
+            <p class="text-gray-700 leading-normal text-sm text-center mb-b">Parade of Trades is a simple simulation that helps us to understand the negative effects of variability in any system. Imagine you are a project manager, responsible for building 60 houses in a new development. You have 5 teams at your command that are responsible for the following trades respectively: foundation, walls, windows and doors, roof and painting. Each team is so big that they can work on and complete multiple houses each day (hypothetical!), but they still have their capacity. The question we're asking is: How long will it takes us to complete this project if <span class="text-sm text-gray-700 font-bold">A)</span> each team handles a varying amount of work each day (represented by the roll of a dice) or <span class="text-sm text-gray-700 font-bold">B)</span> each team performs a set amount of work each day, which is lower than their potential, but stable.</p>
             <p class="text-white"> - </p>
-            <p class="text-gray-700 leading-normal text-center text-sm mb-b">The <button @click="" disabled class="rounded-lg border-t-4 border-blue-400 text-blue-600 p-2 bg-gray-300">Automate</button> button runs all dice rolls until all coins are passed, and show the user the result of the simulation. The <button @click="" disabled class="rounded-lg border-t-4 border-red-400 p-2 bg-red-300 text-red-700">Reset</button> button resets the simulation</p>
+            <p class="text-gray-700 leading-normal text-sm text-center mb-b">In this simulation there is a "stockpile" of coins, representing houses, that need to move from their starting point above the process chain to their end point below the process chain. The simulation is over once all coins has been passed through the chain. The process chain consists of five steps, and each step takes turns in drawing coins from the step before it in the chain, or from the stockpile (teams can only complete work on houses that are ready for them to work on). To do this, each step takes turns to roll a dice, and can take the amount of coins from the step before it equal to the amount rolled, if there are enough coins available in that step. The simulation kicks off with the last step in the process chain (step 5 -> passed coin) indicated by the red light <span class="inline rounded-full w-6 h-8 bg-red-500 text-red-500">---</span> at the botom of the chain. Once the dice has been rolled, the dice is "passed" down the line to the next step in the chain (step 5) and that step's blue light <span class="inline rounded-full w-6 h-8 bg-blue-500 text-blue-500">---</span> is turned on. This step now rolls the dice, and takes that amount of coins from the step prior to it in the chain if they are available and so on. When the first step is reached, it draws from the stockpile. After each step in the chain has rolled, the "weeks" counter is incremented, indicating a "week" of work has passed. Additionally, each step has an maximum capacity limit shown below the step. This is the maximum number of coins that the step can hold at any time, and is editable by the user.</p>
             <p class="text-white"> - </p>
-            <p class="text-gray-700 leading-normal text-center text-sm mb-b">Additionally, the <button @click="" disabled class="rounded-lg border-t-4 border-blue-400 p-2 text-gray-700 bg-gray-300">Change Mode</button> button allows the user to toggle between Variance and Stable mode. In Variance mode, the user sets a minimum and maximum limit for dice rolls (indicative of process spot capability) and the dice is rolled as explained above. In Stable mode, each dice roll is equal to 3.
+            <p class="text-gray-700 leading-normal text-center text-sm mb-b">The <button @click="" disabled class="rounded-lg border-t-4 border-blue-400 text-blue-600 p-2 bg-gray-300">Automate</button> button runs all dice rolls until all coins are passed, and shows the user the result of the simulation. The <button @click="" disabled class="rounded-lg border-t-4 border-red-400 p-2 bg-red-300 text-red-700">Reset</button> button resets the simulation</p>
+            <p class="text-white"> - </p>
+            <p class="text-gray-700 leading-normal text-center text-sm mb-b">Additionally, the <button @click="" disabled class="rounded-lg border-t-4 border-blue-400 p-2 text-gray-700 bg-gray-300">Change Mode</button> button allows the user to toggle between Variance and Stable mode. In Variance mode, the user sets a minimum and maximum limit for dice rolls (indicative of process spot capability) and the dice is rolled as explained above. In Stable mode, each dice roll is equal to 3.</p>
+            <p class="text-white"> - </p>
+            <p class="text-gray-700 leading-normal text-center text-sm mb-b">Run the simulation in Variance and Stable modes and see the difference for yourself (imagine you are burning budget for every dice roll and every week spent on the project). Also, play around with the variables, and provide me <a class="text-blue-400" href="mailto:verster.cornel@gmail.com">feedback</a> if you have any!</p>
             <div class="inline-flex justify-center">
                 <button @click="toggleModal" class="bg-gray-300 flex border-b-2 md:flex-none border-blue-400 ml-2 hover:bg-blue-200 text-gray-700 font-bold py-2 mt-2 px-4 rounded">Close</button>
             </div>
